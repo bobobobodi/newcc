@@ -1,0 +1,884 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin</title>
+    {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> #}
+      <link rel="stylesheet" href="/transuser/static/css/bootstrap.min.css">
+    <script src="/transuser/static/css/jquery.min.js"></script>
+<script src="/transuser/static/css/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/transfer.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="/transuser/static/css/jquery.spincrement.min.js"></script>
+
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+</head>
+<body>
+<div class="one-dis" style="background: url('/transuser/static/img/money1.jpg');">
+    <div class="one-dis1">
+        <div class="header" style="background: rgba(0,0,0,0.8);">
+            <div class="container">
+                <div class="row">
+            <div class="col-sm-5 hidden-xs">
+                <a href="/" class="href"><img style="width: 200px; padding-top: 20px;" src="/transuser/static/img/logo35.png" alt=""></a>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+                <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand visible-xs" href="/"><img style="width: 150px;" src="/transuser/static/img/logo35.png" alt=""></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" style="padding-top: 20px; padding-bottom: 20px;">
+            <li class="active"><a href="http://127.0.0.1:8000/">Главная</a></li>
+            {% if user.is_authenticated %}<li><a href="/lk/">Личный кабинет</a></li>{% else %} {% endif %}
+              {% if user.is_authenticated %}
+                <li>
+                  <a href="/logout">Выход</a>
+                </li>
+              {% else %}
+              <li>
+                  <a href="/register/">Регистрация</a>
+              </li>
+              <li>
+                  <a href="/login/">Вход</a>
+              </li>
+                {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+            </div>
+
+        </div>
+            </div>
+
+
+</div>
+        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background: #212121;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color: #FFFFFF" id="myModalLabel">Вход в личный кабинет</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="slider-my" style="margin-top: 30px;">
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--<div class="col-sm-5 text-left" style="padding: 15px;background: rgba(0,0,0,0.5); border-radius: 14px; padding-top: 40px; padding-bottom: 40px;">
+
+                <p style="color: #FFFFFF; font-size: 32px;  font-family: 'Roboto Slab', serif;">
+                    Регистрация
+                </p>
+                <form role="form">
+                  <div class="form-group" style="margin-top: 30px;">
+                    <label for="exampleInputEmail1" style="color: #fff;">Qiwi</label>
+                    <input style="background-color:#FFFFFF; height: 55px" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group" style="margin-top: 30px;">
+                    <label for="exampleInputPassword1" style="color: #fff;">Пароль</label>
+                    <input style="background-color:#FFFFFF; height: 55px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                    <div class="form-group" style="margin-top: 30px;">
+                    <label for="exampleInputPassword1" style="color: #fff;">Повторите пароль</label>
+                    <input style="background-color:#FFFFFF; height: 55px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <button style="margin-top: 30px;" type="submit" class="btn">Регистрация</button>
+                </form>
+            </div>-->
+            <div class="col-sm-7 col-sm-offset-2">
+                <div class="hidden-xs" style=" font-family: 'Roboto Slab', serif; color: #FFFFFF; font-size: 32px; background: rgba(0,0,0,0.5);padding: 15px;border-radius: 14px; text-align: center; ">
+                    Инвестированно
+                </div>
+                <div class="row hidden-xs" style=" margin-top: 10px;">
+                    <div class="col-sm-2">
+                        <div style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            2
+                        </div>
+                    </div>
+                    <div class="col-sm-2" >
+                        <div style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            3
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2" >
+                        <div style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            4
+                        </div>
+                    </div>
+                    <div class="col-sm-2" >
+                        <div style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            5
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div  style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            6
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div style="background: rgba(0,0,0,0.5); color: #FFFFFF; text-align: center; font-size: 36px; font-weight: bold; border-radius: 14px; border: 1px solid #FFFFFF;">
+                            7
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-carousel owl-theme" style="color: #FFFFFF; font-size: 32px; background: rgba(0,0,0,0.5);padding: 15px;border-radius: 14px; text-align: left; margin-top:10px;">
+                    <div class="item">
+                        <h2 style="font-weight: lighter; font-size: 40px; font-family: 'Roboto Slab', serif;">
+                                        <!--Ищете возможность, как грамотно и быстро получить прибыль с Ваших инвестиций?-->
+                            Грамотные вложения с <br> Cript Capital
+                                    </h2>
+                        <p style="font-weight: lighter; padding-bottom: 5px; font-family: 'Roboto Slab', serif;">
+                            Нет обходимости копить на стартовый капитал, начните зарабатывать без крупных вложений.
+                            Не лишайте себя зароботка, не ждите окончания сделки, открывайте несколько вкладов одновременно и получайте прибыль.
+                        </p>
+                    </div>
+                    <div class="item">
+                        <h2 style="font-weight: lighter; font-size: 40px; font-family: 'Roboto Slab', serif;">
+                                        Без рисков
+                                    </h2>
+                                    <p>
+                                        Первый в своем роде инвестиционный проект со 100% защищенностью квантовой криптографией!
+                                        <!--Не лишайте себя зароботка, не ждите окончания сделки, открывайте несколько вкладов одновременно и получайте прибыль.-->
+                                        Влияние человеческого фактора на данные операции исключены, все рассчеты и переводы осуществляются автоматически!
+                                    </p>
+                    </div>
+                    <div class="item">
+                        <h2 style="font-weight: lighter; font-size: 40px; font-family: 'Roboto Slab', serif;">
+                                        Востребованность
+                                    </h2>
+                                    <p>
+                                        Криптовалюты все больше проникают в нашу жизнь. <br> Увеливается количество магазинов, сайтов и других сервисов, которые принимают оплату в криптовалюте.
+                                        <br> Остается только принять сей факт, как должное, и обратить его себе на выгоду.                                        <!--Доступны 24 часа в сутки, 7 дней в неделю. <br>
+
+                                        Влияние человеческого фактора на данные операции исключены, все рассчеты и переводы осуществляются автоматически!-->
+                                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="row">
+                       <div class="col-sm-12">
+                   <div class="owl-carousel owl-theme">
+
+                        <div class="item">
+
+                                <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 style="font-weight: lighter; font-size: 45px; margin-top: 80px;">
+                                        Ищете возможность, как грамотно и быстро получить прибыль с Ваших инвестиций?
+                                    </h2>
+                                    <h1>
+                                        BIT-INVEST
+                                    </h1>
+                                    <p>
+                                         в своем роде инвестиционный проект со 100% защищенностью квантовой криптографией!
+                                        Не лишайте себя зароботка, не ждите окончания сделки, открывайте несколько вкладов одновременно и получайте прибыль.
+                                    </p>
+                                </div>
+                                </div>
+
+
+                        </div>
+                       <div class="item">
+                            <div class="container">
+                                <div class="row">
+                                <div class="col-sm-6">
+                                    <h2>
+                                        Что такое bitcoin? Почему bitkoin?
+                                    </h2>
+                                    <h1>
+                                        BIT-INVEST
+                                    </h1>
+                                    <p>
+                                        Биткоин будет становится все более стабильней по мере развития рынка. <br>
+                                        Следовательно в 2018 году средний курс сотавит 6-8 тысяч долларов, при этом некоторые эксперты считают, что биткоин может вырасти до 10 тысяц долларов.
+                                    </p>
+                                    <a href="" class="btn">Регистрация</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="/transuser/static/img/img1%20(4).png" style="margin-top: 70px" class="img-responsive" alt="">
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                       <div class="item">
+                            <div class="container">
+                                <div class="row">
+                                <div class="col-sm-11">
+                                    <h2 style="font-weight: lighter; font-size: 45px; margin-top: 80px;">
+
+                                        Без рисков
+                                    </h2>
+                                    <h1>
+                                        BIT-INVEST
+                                    </h1>
+                                    <p>
+                                       Нет обходимости копить на стартовый капитал, начните зарабатывать без крупных вложений.
+                                                                              <!--Доступны 24 часа в сутки, 7 дней в неделю. <br>
+
+                                        Влияние человеческого фактора на данные операции исключены, все рассчеты и переводы осуществляются автоматически!
+                                    </p>
+                                    <a href="" data-toggle="modal" data-target="#myModal" class="btn">Регистрация</a>
+                                </div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="item">
+                            <div class="container">
+                                <div class="row">
+                                <div class="col-sm-11">
+                                    <h2 style="font-weight: lighter; font-size: 45px; margin-top: 80px;">
+                                        Востребованность
+                                    </h2>
+                                    <h1>
+                                        BIT-INVEST
+                                    </h1>
+                                    <p>
+                                        Криптовалюты все больше проникают в нашу жизнь. <br> Увеливается количество магазинов, сайтов и других сервисов, которые принимают оплату в криптовалюте.
+                                        <br> Остается только принять сей факт, как должное, и обратить его себе на выгоду.                                        <!--Доступны 24 часа в сутки, 7 дней в неделю. <br>
+
+                                        Влияние человеческого фактора на данные операции исключены, все рассчеты и переводы осуществляются автоматически!
+                                    </p>
+                                    <a href="" data-toggle="modal" data-target="#myModal" class="btn">Регистрация</a>
+                                </div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+        </div>-->
+    </div>
+
+<!--<div class="statystic-block">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h1 class="text-center" style="font-size: 28px;">
+                    На чем Мы зарабатываем?
+                </h1>
+                <span style="color: #525252; font-size: 16px; font-weight: normal;">
+                     Наш проект основан на вложениях в криптовалюту. В 2012 году мы начали приобретать биткоины и на тот момент никто из нас не предпологал такого взлета. И теперь окрепнув и достигнув
+                    такого такого уровня на рынке, что на данный момент биткоин стоит около 4,5 тыс. долларов. Мы решили заработать на своих вложениях, и предлогаем Вам приумножить свой капитал! <br>
+                </span>
+                <p style="font-size: 20px; text-align: center;">
+                     Все просто, Мы ставим
+                    на биткоин!!!
+                </p>
+            </div>
+        </div>
+
+</div>-->
+    </div>
+    </div>
+<div>
+    <div class="container-fluid hidden-xs">
+        <div class="row" style="margin-top: 50px; padding-top: 10px; padding-bottom: 10px; background: rgba(0,0,0,0.5);">
+                    <div class="col-sm-2 text-center">
+                        <a style="text-decoration: none; color: #fff;"
+   class=""
+   ><img width="50" src="/transuser/static/img/btc-filled.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Bitcoin</span></a>
+
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div tabindex="0" style="text-decoration: none; color: #fff;"
+   class=""
+   role="button"
+   data-html="true"
+   data-toggle="popover"
+   data-trigger="focus"
+   title="<b>Курс</b>"
+   data-content="Тест"><img width="50" src="/transuser/static/img/xmr.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Monero</span></div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div tabindex="0" style="text-decoration: none; color: #fff;"
+   class=""
+   role="button"
+   data-html="true"
+   data-toggle="popover"
+   data-trigger="focus"
+   title="<b>Курс</b>"
+   data-content="Тест"><img width="50" src="/transuser/static/img/rpl.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Ripple</span></div>
+
+<script type="text/javascript">
+$(function(){
+    // Enables popover
+    $("[data-toggle=popover]").popover();
+});
+</script>
+                    </div>
+                         <div class="col-sm-2 text-center">
+                        <div style="text-decoration: none; color: #fff;"
+   class=""
+   ><img width="50" src="/transuser/static/img/t1.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Ehtereum</span></div>
+
+                    </div>
+                         <div class="col-sm-2 text-center">
+                        <div style="text-decoration: none; color: #fff;"
+   class=""
+   ><img width="50" src="/transuser/static/img/t2.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Litecoin</span></div>
+
+                    </div>
+                         <div class="col-sm-2 text-center">
+                        <div style="text-decoration: none; color: #fff;"
+   class=""
+   ><img width="50" src="/transuser/static/img/t3.png" alt=""><span style="font-size: 18px; padding-left: 15px;">Dash</span></div>
+
+                    </div>
+                </div>
+    </div>
+
+</div>
+
+</div>
+<!--
+<!--<div class="tarif" style="margin-bottom: 50px;">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-3">
+                <div class="tarif-cart">
+                    <div style="padding-top: 10px; font-size:18px; text-transform: uppercase;">
+                    Standart
+                    </div>
+                    <div style="padding-top: 10px; font-size: 18px; color: #ffffff; background: -moz-linear-gradient(top, #e8e84a 2%, #ff5454 100%, #7db9e8 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #e8e84a 2%,#ff5454 100%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #e8e84a 2%,#ff5454 100%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e84a', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */">
+                         10%
+                     </div>
+                    <div style="padding-top: 10px;">
+                        100-5000 р.
+                    </div>
+                     <div style="padding-top: 10px;">
+                         сутки
+                     </div>
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div style="padding-top: 10px;">
+                    Normal
+                </div>
+                <div style="padding-top: 10px;">
+                    5000-25000 р.
+                </div>
+                 <div style="padding-top: 10px;">
+                     3 суток
+                 </div>
+                <div style="padding-top: 10px;">
+                     30%
+                 </div>
+            </div>
+            <div class="col-sm-3">
+                <div style="padding-top: 10px;">
+                    Premium
+                </div>
+                <div style="padding-top: 10px;">
+                    25000-200000 р.
+                </div>
+                 <div style="padding-top: 10px;">
+                     5 суток
+                 </div>
+                <div style="padding-top: 10px;">
+                     50%
+                 </div>
+            </div>
+            <div class="col-sm-3">
+                <div style="padding-top: 10px;">
+                    Platinum
+                </div>
+                <div style="padding-top: 10px;">
+                    ?
+                </div>
+                 <div style="padding-top: 10px;">
+                     ?
+                 </div>
+                <div style="padding-top: 10px;">
+                     100%
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>-->
+
+<!--<div class="tranz hidden-xs">
+    <div class="container">
+        <table class="table table-hover">
+            <tr>
+                <td>
+                    Транзакция
+                </td>
+                <td>
+                     Время
+                </td>
+                <td>
+                    Сумма
+                </td>
+            </tr>
+            <tr>
+                <td>
+2c12aa782e13ac49c32aa94529d8a433cc4193a83ee771feb0e3f492c2b9dae0
+                </td>
+                <td>
+меньше минуты
+                </td>
+                <td>
+                    857876
+                </td>
+            </tr>
+            <tr>
+                <td>
+2c12aa782e13ac49sdfsdfc32aa94529d8a433cc4193a83ee771feb0e3f492c2b9dae0
+                </td>
+                <td>
+меньше минуты
+                </td>
+                <td>
+                    8678
+                </td>
+            </tr>
+            <tr>
+                <td>
+2c12aa782e13asdfsdc49c32aa94529d8a433cc4193a83ee771feb0e3f492c2b9dae0
+                </td>
+                <td>
+меньше минуты
+                </td>
+                <td>
+                    65757
+                </td>
+            </tr>
+            <tr>
+                <td>
+2c12aa782e13asdfc49c32aa94529d8a433cc4193a83ee771feb0e3f492c2b9dae0
+                </td>
+                <td>
+меньше минуты
+                </td>
+                <td>
+                    53345
+                </td>
+            </tr>
+            <tr>
+                <td>
+2c12aa7245245dfkl3a83ee771feb0e3f492c2b9dae0
+                </td>
+                <td>
+меньше минуты
+                </td>
+                <td>
+                    25452
+                </td>
+            </tr>
+        </table>
+<!--
+        <div id="transactions">
+        <div class="transaction-head">
+            <div class="wrapper flex-container">
+                <span><img alt="" src="/templates/default/index/images/transaction-hash.png"> <b>Транзакция</b></span>
+                <span><img alt="" src="/templates/default/index/images/transaction-time.png"> <b>Время</b></span>
+                <span><img alt="" src="/templates/default/index/images/transaction-money.png"> <a href="javascript://">Сумма <span data-btc="฿" data-usd="$">฿</span></a></span>
+            </div>
+        </div>
+            <div class="transaction">
+            <div class="wrapper flex-container">
+                <span>
+                    <a href="https://blockchain.info/tx/728fc3caab894383b9b24e379d00d1bf686581be2e4b528ba6f614e19400b02e" target="_blank">728fc3caab894383b9b24e379d00d1bf686581be2e4b528ba6f614e19400b02e</a>
+                </span><span>меньше минуты</span>
+                <span data-origsum="1.22834512">1.22834512 ฿</span>
+            </div>
+            </div>
+            <div class="transaction">
+                <div class="wrapper flex-container">
+                    <span>
+                        <a href="https://blockchain.info/tx/1451afe206bedb4e9a9ac16527455547d6c86351e11b619540634b51b84a4314" target="_blank">1451afe206bedb4e9a9ac16527455547d6c86351e11b619540634b51b84a4314</a>
+                    </span>
+                    <span>меньше минуты</span>
+                    <span data-origsum="0.00515556">0.00515556 ฿</span>
+                </div>
+            </div>
+            <div class="transaction">
+                <div class="wrapper flex-container">
+                    <span>
+                        <a href="https://blockchain.info/tx/c08d72f8f6b2933acf8f6197b6178be25c3dd61566fac29c0e227e339106884b" target="_blank">c08d72f8f6b2933acf8f6197b6178be25c3dd61566fac29c0e227e339106884b</a>
+                    </span>
+                    <span>меньше минуты</span>
+                    <span data-origsum="0.01235512">0.01235512 ฿</span>
+                </div>
+            </div>
+            <div class="transaction">
+                <div class="wrapper flex-container">
+                    <span>
+                        <a href="https://blockchain.info/tx/e680f755da0020c24b057bcf185393adb37e78404c0aac2c319251969f846f4b" target="_blank">e680f755da0020c24b057bcf185393adb37e78404c0aac2c319251969f846f4b</a>
+                    </span>
+                    <span>меньше минуты</span>
+                    <span data-origsum="0.40360865">0.40360865 ฿</span>
+                </div>
+            </div>
+            <div class="transaction">
+                <div class="wrapper flex-container">
+                    <span>
+                        <a href="https://blockchain.info/tx/40583b61ef2cc06505235051503c190894743dedd11a07bce5c4cd972ca8863e" target="_blank">40583b61ef2cc06505235051503c190894743dedd11a07bce5c4cd972ca8863e</a>
+                    </span>
+                    <span>меньше минуты</span>
+                    <span data-origsum="1.13976266">1.13976266 ฿</span>
+                </div>
+            </div>
+            <div class="transaction">
+                <div class="wrapper flex-container">
+                    <span><a href="https://blockchain.info/tx/5f9581454528f4b48ca009c425b5700ec08e379259f3c2fa6df327220377161a" target="_blank">5f9581454528f4b48ca009c425b5700ec08e379259f3c2fa6df327220377161a</a></span>
+                    <span>меньше минуты</span>
+                    <span data-origsum="0.09434704">0.09434704 ฿</span>
+                </div>
+            </div>
+
+    </div>
+
+    </div>
+</div>-->
+    <div class="tarif-block">
+        <div class="container">
+            <div class="row">
+                          <div class="col-sm-3">
+                              <div target="_blank" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p class="cart-icon bronze">
+                                      B
+                                  </p>
+                                    <div class="cart-tarif">
+                                    Bronze
+                                    </div>
+                                    <div class="cart-text">
+                                         10%
+                                     </div>
+                                    <div class="cart-text">
+                                        100-10000 р.
+                                    </div>
+                                     <div class="cart-text">
+                                         сутки
+                                     </div>
+                                  <a target="_blank" href="/register/" class="btn cart-btn" style="margin-top: 15px;">Регистрация</a>
+                                </div>
+                          </div>
+                          <div class="col-sm-3">
+                                <div target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p class="cart-icon silver">
+                                      S
+                                  </p>
+                                    <div class="cart-tarif silver">
+                                    Silver
+                                    </div>
+                                    <div class="cart-text">
+                                         30%
+                                     </div>
+                                    <div class="cart-text">
+                                        5000-10000 р.
+                                    </div>
+                                     <div class="cart-text">
+                                         3 суток
+                                     </div>
+                                     <a target="_blank" href="/register/" class="btn" style="margin-top: 15px;">Регистрация</a>
+                                </div>
+                          </div>
+                          <div class="col-sm-3">
+                                <div target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p class="cart-icon gold">
+                                      G
+                                  </p>
+                                    <div class="cart-tarif gold">
+                                    Gold
+                                    </div>
+                                    <div class="cart-text">
+                                         75%
+                                     </div>
+                                    <div class="cart-text">
+                                        10000-15000 р.
+                                    </div>
+                                     <div class="cart-text">
+                                         5 дней
+                                     </div>
+                                     <a target="_blank" href="/register/" class="btn" style="margin-top: 15px;">Регистрация</a>
+                                </div>
+                          </div>
+                          <div class="col-sm-3">
+                                <div target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <img src="/transuser/static/img/p.png" alt="" style="padding-top: 30px; padding-bottom: 30px;">
+                                    <div  class="cart-tarif platinum">
+                                    Platinum
+                                    </div>
+                                    <div class="cart-text">
+                                         100%
+                                     </div>
+                                    <div class="cart-text">
+                                        15000-60000 р.
+                                    </div>
+                                     <div class="cart-text">
+                                         10 дней
+                                     </div>
+                                     <a target="_blank" href="/register/" class="btn" style="margin-top: 15px;">Регистрация</a>
+                                </div>
+                          </div>
+                      </div>
+        </div>
+
+    </div>
+<div class="footer" style="background: rgba(0,0,0,0.7); margin-top: 30px;
+    padding: 45px 0 45px;
+    color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img style="width: 200px;" src="/transuser/static/img/logo35.png" alt="">
+            </div>
+            <div class="col-sm-8">
+                <ul class="hr">
+                    <li class="active"><a href="http://127.0.0.1:8000/">Главная</a></li>
+            <li><a href="/lk/">Личный кабинет</a></li>
+              <li>
+                  <a href="" data-toggle="modal" data-target="#myModal2" >Регистрация</a>
+              </li>
+              <li>
+                  <a data-toggle="modal" data-target="#myModal3" href="">Вход</a>
+              </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+   <!-- <div class="criptvalut" id="counts" style="background: #333333; padding-top: 30px; padding-bottom: 30px;">
+        <div class="container">
+            <div class="row">
+		<div class="col-sm-4 text-center">
+			<div class="circle center-block" style="background: #FFFFFF; border-radius: 50%; width: 50px; height: 50px; text-align: center; padding-top: 15px;">
+				<span style="" class="spincrement">4089</span>
+			</div>
+			<p class="label">Транзакций</p>
+		</div>
+		<div class="col-sm-4 text-center">
+			<div class="circle center-block" style="background: #FFFFFF; border-radius: 50%; width: 50px; height: 50px; text-align: center; padding-top: 15px;">
+				<span style="" class="spincrement">146</span>
+			</div>
+			<p class="label">Клиентов</p>
+		</div>
+		<div class="col-sm-4 text-center">
+			<div class="circle center-block" style="background: #FFFFFF; border-radius: 50%; width: 50px; height: 50px; text-align: center; padding-top: 15px;">
+				<span style="" class="spincrement">785</span>
+			</div>
+			<p class="label">Партнеров</p>
+		</div>
+
+
+
+        </div>
+        </div>
+
+</div>-->
+    <script>
+        $(document).ready(function(){
+    var show = true;
+	var countbox = "#counts";
+	$(window).on("scroll load resize", function(){
+		if(!show) return false;                   // Отменяем показ анимации, если она уже была выполнена
+		var w_top = $(window).scrollTop();        // Количество пикселей на которое была прокручена страница
+		var e_top = $(countbox).offset().top;     // Расстояние от блока со счетчиками до верха всего документа
+		var w_height = $(window).height();        // Высота окна браузера
+		var d_height = $(document).height();      // Высота всего документа
+		var e_height = $(countbox).outerHeight(); // Полная высота блока со счетчиками
+		if(w_top + 200 >= e_top || w_height + w_top == d_height || e_height + e_top < w_height){
+			$(".spincrement").spincrement({
+				thousandSeparator: "",
+				duration: 1200
+			});
+			show = false;
+		}
+	});
+});
+    </script>
+<!--<div class="maps" style="height: 584px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                    <div id="maps-trans"  style="position:absolute; color: #FFFFFF; text-decoration: underline; margin-top: 250px;
+    margin-left: 260px;"><span>15940</span> $ <br> <span>Транзакция</span></div>
+                <script>
+                    $("#maps-trans").hide(5000)
+                </script>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--<div class="block-fin">
+    <div class="container">
+        <Div class="row">
+            <div class="col-sm-4 text-center">
+                 <img src="/transuser/static/img/advantage.svg" alt="">
+                <h4 style="padding-top: 20px; padding-bottom: 20px;">
+                    Скорость
+                </h4>
+                <p style="padding-bottom: 20px;">
+                    Зачисление средств в течении 10 минут
+                </p>
+            </div>
+            <div class="col-sm-4 text-center">
+                 <img src="/transuser/static/img/white.svg" alt="">
+                <h4 style="padding-top: 20px; padding-bottom: 20px;">
+                    Гарантия
+                </h4>
+                <p style="padding-bottom: 20px;">
+                    Все транзакции проходящие через наш платёжный шлюз, гарантированны от убытков на 100%
+                </p>
+            </div>
+            <div class="col-sm-4 text-center">
+                <img src="/transuser/static/img/6.svg" alt="">
+                <h4 style="padding-top: 20px; padding-bottom: 20px;">
+                    Пассивный доход
+                </h4>
+                <p style="padding-bottom: 20px;">
+
+                </p>
+            </div>
+        </Div>
+    </div>
+</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-ms-12">
+
+            <script>
+                var speedCanvas = document.getElementById("speedChart");
+
+                Chart.defaults.global.defaultFontFamily = "Lato";
+                Chart.defaults.global.defaultFontSize = 10;
+
+                var dataFirst = {
+                    label: "Car A - Speed (mph)",
+                    data: [0, 59, 75, 20, 20, 55, 40],
+                    lineTension: 0.3,
+                    fill: false,
+                    borderColor: 'red',
+                    backgroundColor: 'transparent',
+                    pointBorderColor: 'red',
+                    pointBackgroundColor: 'lightgreen',
+                    pointRadius: 5,
+                    pointHoverRadius: 15,
+                    pointHitRadius: 30,
+                    pointBorderWidth: 2,
+                    pointStyle: 'rect'
+                  };
+
+                var dataSecond = {
+                    label: "Car B - Speed (mph)",
+                    data: [20, 15, 60, 60, 65, 30, 70],
+                    lineTension: 0.3,
+                    fill: false,
+                    borderColor: 'purple',
+                    backgroundColor: 'transparent',
+                    pointBorderColor: 'purple',
+                    pointBackgroundColor: 'lightgreen',
+                    pointRadius: 5,
+                    pointHoverRadius: 15,
+                    pointHitRadius: 30,
+                    pointBorderWidth: 2
+                  };
+
+                var speedData = {
+                  labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+                  datasets: [dataFirst, dataSecond]
+                };
+
+                var chartOptions = {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                      boxWidth: 30,
+                      fontColor: 'black'
+                    }
+                  }
+                };
+
+                var lineChart = new Chart(speedCanvas, {
+                  type: 'line',
+                  data: speedData,
+                  options: chartOptions
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            loop:true,
+            margin:10,
+            nav:false,
+            autoplay: true,
+            autoplayTimeout: 10000,
+        });
+        $("#showr").click(function () {
+          $("#animat:eq(0)").show("fast", function () {
+            // use callee so don't have to name the function
+            $(this).next().show("fast", arguments.callee);
+          });
+        });
+    </script>
+</body>
+</html>

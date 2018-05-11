@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form action="/action/login">
+            {% csrf_token %}
+            <label for="qiwiwallet">Qiwi</label>
+            <input type="text" name="qiwiwallet" id="qiwiwallet">
+            <label for="password">Пароль</label>
+            <input type="password" name="password" id="password">
+            {% if login_error %}
+                <label for="error">{{ login_error }}</label>
+            {% endif %}
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+    <div class="reg">
+        <form action="/auth/register/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="button" type="submit" value="Регистрация">
+        </form>
+    </div>
+</body>
+</html>

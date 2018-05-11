@@ -1,0 +1,307 @@
+{% load staticfiles %}
+    <link rel="stylesheet" href="/transuser/static/css/bootstrap.min.css">
+    <script src="/transuser/static/css/jquery.min.js"></script>
+<script src="/transuser/static/css/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/transfer.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="/transuser/static/css/jquery.spincrement.min.js"></script>
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin</title>
+</head>
+
+<body>
+<div class="one-dis" style="padding-bottom: 120px;">
+    <div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 hidden-xs">
+                <a href="/" class="href"><img style="width: 200px; padding-top: 20px;" src="/transuser/static/img/logo35.png" alt=""></a>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+                <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand visible-xs" href="/"><img style="width: 150px;" src="/transuser/static/img/logo35.png" alt=""></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" style="padding-top: 20px; padding-bottom: 20px;">
+            <li class="active"><a href="http://127.0.0.1:8000/">Главная</a></li>
+            {% if user.is_authenticated %}<li><a href="/lk/">Личный кабинет</a></li>{% else %} {% endif %}
+              {% if user.is_authenticated %}
+                <li>
+                  <a href="/logout">Выход</a>
+                </li>
+              {% else %}
+              <li>
+                  <a href="/register/">Регистрация</a>
+              </li>
+              <li>
+                  <a href="/login/">Вход</a>
+              </li>
+                {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background: #212121;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color: #FFFFFF" id="myModalLabel">Вход в личный кабинет</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1" style="color: #fff;">Qiwi</label>
+            <input style="background-color:#FFFFFF; height: 55px" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" style="color: #fff;">Пароль</label>
+            <input style="background-color:#FFFFFF; height: 55px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn">Вход</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background: #212121;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color: #FFFFFF" id="myModalLabel">Регистрация</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1" style="color: #fff;">Qiwi</label>
+            <input style="background-color:#FFFFFF; height: 55px" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" style="color: #fff;">Пароль</label>
+            <input style="background-color:#FFFFFF; height: 55px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+            <div class="form-group">
+            <label for="exampleInputPassword1" style="color: #fff;">Повторите пароль</label>
+            <input style="background-color:#FFFFFF; height: 55px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn">Регистрация</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="name">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="qiwi" style="">
+                    <p class="head">
+                        Наш Qiwi кошелек - 892733230978 <br>
+                        <span>Ваш Qiwi - {{ me }}</span>
+                    </p>
+                    <p class="security">
+                        В целях безопасности Ваших денежных средств, соблюдайте правила осторожности при онлайн подтверждениях, а также верно ли Вы указали номер qiwi кошелька.
+
+                    </p>
+                    <p class="bg-danger" style="background-color: rgba(255,63,63,0.6);
+    padding: 10px;
+    font-size: 17px; letter-spacing: 0.5px;">
+                        При переводе денежных средств. укажите выбранный Вами тариф в комментарии. Например B – bronze, S – silver, G – gold, P - premium. В случае не указания тарифа, программа внесет Вашу транзакцию в зависимости от вложенной Вами суммы.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container" style="margin-top: 50px;">
+            <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs" id="myTab">
+                  <li class="active"><a href="#home" data-toggle="tab">Вклады</a></li>
+                  <li><a href="#profile" data-toggle="tab">Выплаты</a></li>
+                  <li><a href="#messages" data-toggle="tab">Тарифы</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div class="tab-pane tab-pane1 active" id="home">
+                    <table class="table">
+                        <tr>
+                            <td>Вклад</td>
+                            <td>Дата вклада</td>
+                            <td>Тариф</td>
+                        </tr>
+                        {% for transfer in test %}
+                        <tr>
+                            <td>
+                                {{ transfer.money }}
+                            </td>
+                            <td>
+                                {{ transfer.published_date|date:"d M Y" }}
+                            </td>
+                            <td>
+                                {{ transfer.tarif }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                  </div>
+                  <div class="tab-pane tab-pane1" id="profile">
+                      <table class="table">
+                        <tr>
+                            <td>Выплата</td>
+                            <td>Дата выплаты</td>
+                            <td>Тариф</td>
+                        </tr>
+                          {% for transfer in test %}
+                        <tr>
+                            <td>{{ transfer.money_off }}</td>
+                            <td>
+                                {{ transfer.date_off|date:"d M Y" }}
+                            </td>
+                            <td>
+                                {{ transfer.tarif }}
+                            </td>
+                        </tr>
+                          {% endfor %}
+
+                    </table>
+                  </div>
+                  <div class="tab-pane " id="messages">
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <a target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p style=" text-transform: uppercase; font-family: 'cas'; font-size: 86px; color:#CD7F32;">
+                                      B
+                                  </p>
+                                    <div style="padding-top: 20px; font-size:24px; color: #CD7F32; text-transform: uppercase; font-family: 'cas'; letter-spacing: 3px;">
+                                    Bronze
+                                    </div>
+                                    <div style="padding-top: 15px; font-size: 21px; color: #ffffff;">
+                                         10%
+                                     </div>
+                                    <div style="padding-top: 15px; font-size: 18px;">
+                                        100-10000 р.
+                                    </div>
+                                     <div style="padding-top: 15px; font-size: 18px;">
+                                         сутки
+                                     </div>
+
+
+
+                                </a>
+                          </div>
+                          <div class="col-sm-3">
+                                <a target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p style=" text-transform: uppercase; font-family: 'cas'; font-size: 86px; color:#c0c0c0;">
+                                      S
+                                  </p>
+                                    <div style="padding-top: 20px; font-size:24px; text-transform: uppercase; color:#c0c0c0; font-family: 'cas'; letter-spacing: 3px;">
+                                    Silver
+                                    </div>
+                                    <div style="padding-top: 15px; font-size: 21px; color: #ffffff;">
+                                         30%
+                                     </div>
+                                    <div style="padding-top: 15px; font-size: 18px;">
+                                        5000-10000 р.
+                                    </div>
+                                     <div style="padding-top: 15px; font-size: 18px;">
+                                         3 суток
+                                     </div>
+
+                                </a>
+                          </div>
+                          <div class="col-sm-3">
+                                <a target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <p style=" text-transform: uppercase; font-family: 'cas'; font-size: 86px; color:#ffd700;">
+                                      G
+                                  </p>
+                                    <div style="padding-top: 20px; font-size:24px; color: #ffd700; text-transform: uppercase; font-family: 'cas'; letter-spacing: 3px;">
+                                    Gold
+                                    </div>
+                                    <div style="padding-top: 15px; font-size: 21px; color: #ffffff;">
+                                         75%
+                                     </div>
+                                    <div style="padding-top: 15px; font-size: 18px;">
+                                        10000-15000 р.
+                                    </div>
+                                     <div style="padding-top: 15px; font-size: 18px;">
+                                         5 дней
+                                     </div>
+
+                                </a>
+                          </div>
+                          <div class="col-sm-3">
+                                <a target="_blank" href="https://qiwi.com/payment/form/99" class="text-center tab-pane2" style="padding-bottom: 40px; padding-top: 40px; display: block;">
+                                  <img src="/transfer/static/img/p.png" alt="" style="padding-top: 30px; padding-bottom: 30px;">
+                                    <div style="padding-top: 20px; font-size:24px; text-transform: uppercase; font-family: 'cas'; color: #E5E4E2; letter-spacing: 3px;">
+                                    Platinum
+                                    </div>
+                                    <div style="padding-top: 15px; font-size: 21px; color: #ffffff;">
+                                         100%
+                                     </div>
+                                    <div style="padding-top: 15px; font-size: 18px;">
+                                        15000-60000 р.
+                                    </div>
+                                     <div style="padding-top: 15px; font-size: 18px;">
+                                         10 дней
+                                     </div>
+
+                                </a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                <script>
+                  $(function () {
+                    $('#myTab a:last').tab('show')
+                  })
+                </script>
+
+
+
+            </div>
+            </div>
+
+    </div>
+</div>
+</body>
+</html>
